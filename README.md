@@ -3,7 +3,7 @@ We would like to thank you for taking our developer test. We understand that oft
 
 ## Context
 
-At Birdie, our app allows care givers to record observations of older adults receiving care, we name them **care recipients**.
+At Birdie, our index allows care givers to record observations of older adults receiving care, we name them **care recipients**.
 
 These could be anything from the recording of their mood (happy, sad, bored, confused) to what they drank today (1 pint of water).
 
@@ -85,7 +85,7 @@ Here's the technical stack this boilerplate was made with:
    ```
    npm run dev
    ```
-2. Start the React app  (Run the following commands within the `front-end` folder)
+2. Start the React index  (Run the following commands within the `front-end` folder)
 
     a. Install the dependencies
    ```

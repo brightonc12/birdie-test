@@ -1,8 +1,28 @@
+import * as bodyParser from "body-parser";
 import * as express from "express";
-import {pingController} from "./controllers/ping";
+import IAppDependency from "./config/dependencies";
+import {AppError} from "./frameworks/common/exceptions/AppError";
+import ErrorHandler from "./frameworks/common/exceptions/ErrorHandler";
+import routes from "./frameworks/web/routes";
 
-const app = express();
+const app = express()
 
-app.use(pingController);
+const application = (dependencies: IAppDependency) => {
 
-export default app;
+    app.use(bodyParser.urlencoded({extended: true}))
+    app.use(bodyParser.json())
+
+    app.use('/v1', routes(dependencies))
+
+    // Exception
+    app.all('*', (req: express.Request, _: express.Response, next: express.NextFunction) => {
+        next(new AppError(`Could not find ${req.originalUrl}`, 404))
+    })
+
+    app.use(ErrorHandler)
+
+    return app
+}
+
+
+export default application
