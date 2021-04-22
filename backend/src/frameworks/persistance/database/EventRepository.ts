@@ -8,26 +8,25 @@ interface ITextRow {
     total: number
 }
 
-
 export interface IEvent {
     id: string,
-    payload: string,
-    alertId: string,
+    medication_type: string,
     task_instance_id: string,
     event_type: string,
     visit_id: string,
-    fluid: string,
     note: string,
     observed: string,
-    media: string,
-    task_definition_description: string,
-    task_schedule_id: string,
-    task_schedule_note: string,
-    task_definition_id: string,
+    medication_failure_reason: string,
     timestamp: string,
     caregiver_id: string,
     care_recipient_id: string,
-    mood: string,
+}
+
+
+export interface IEventPayload {
+    payload: IEvent,
+    id: string,
+    event_type: string,
 }
 
 export default class SqlEventRepository implements EventRepository {
@@ -43,7 +42,7 @@ export default class SqlEventRepository implements EventRepository {
             if (!(res.rows instanceof Array)) {
                 throw Error
             }
-            return res.rows[0] as IEvent
+            return (res.rows[0] as IEventPayload).payload
         } catch (e) {
             // tslint:disable-next-line:no-console
             console.log(e)
@@ -67,20 +66,20 @@ export default class SqlEventRepository implements EventRepository {
         }
 
         try {
-            const res = await SqlQuery(this.pool, 'SELECT COUNT(id) AS total FROM events')
+            const res = await SqlQuery(this.pool, 'SELECT COUNT(id) AS total FROM events WHERE event_type LIKE "%medication%" ')
             if (!(res.rows instanceof Array)) {
                 throw Error
             }
 
             total = (res.rows[0] as ITextRow)?.total || 0
             if (total > 0) {
-                const result = await SqlQuery(this.pool, `SELECT * FROM events LIMIT ${size} OFFSET ${offset}`)
+                const result = await SqlQuery(this.pool, `SELECT * FROM events WHERE event_type LIKE "%medication%" LIMIT ${size} OFFSET ${offset}`)
 
                 if (!(result.rows instanceof Array)) {
                     return new Pagination<IEvent>()
                 }
                 const pageCount = Math.ceil(total / size)
-                return new Pagination<IEvent>(pageCount, page, result.rows.length, total, result.rows as IEvent[])
+                return new Pagination<IEvent>(pageCount, page, result.rows.length, total, (result.rows as IEventPayload[]).map(e => e.payload))
             }
             return new Pagination<IEvent>()
 

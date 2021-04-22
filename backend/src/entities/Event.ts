@@ -4,15 +4,19 @@ import Pagination from "./Pagination";
 export default class Event {
 
     public static fromModel(m: IEvent): Event {
-        return new Event(
-            m.id,
-            m.event_type,
-            m.visit_id,
-            m.timestamp,
-            m.caregiver_id,
-            m.care_recipient_id,
-            m.mood,
-        )
+        const event = new Event()
+        event.id = m.id
+        event.eventType = m.event_type
+        event.visitId = m.visit_id
+        event.timestamp = m.timestamp
+        event.caregiverId = m.caregiver_id
+        event.careRecipientId = m.care_recipient_id
+        event.taskInstanceId = m.task_instance_id
+        event.note = m.note
+        event.medicationFailureReason = m.medication_failure_reason
+
+        return event
+
     }
 
     public static fromModelPagination(pagination: Pagination<IEvent>): Pagination<Event> {
@@ -27,23 +31,14 @@ export default class Event {
 
     constructor(
         public id: string = '',
-        // public payload: string = '',
-        // public alertId: string = '',
-        // public taskInstanceId: string = '',
+        public taskInstanceId: string = '',
         public eventType: string = '',
         public visitId: string = '',
-        // public fluid: string = '',
-        // public note: string = '',
-        // public observed: string = '',
-        // public media: string = '',
-        // public taskDefinitionDescription: string = '',
-        // public taskScheduleId: string = '',
-        // public taskScheduleNote: string = '',
-        // public taskDefinitionId: string = '',
+        public note: string = '',
+        public medicationFailureReason: string = '',
         public timestamp: string = '',
         public caregiverId: string = '',
         public careRecipientId: string = '',
-        public mood: string = '',
     ) {
     }
 }
