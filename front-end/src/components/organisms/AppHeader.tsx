@@ -11,7 +11,7 @@ interface AppHeaderState {
 }
 
 const HeaderContainer = styled.div`
-
+    margin: 1rem 0;
 `;
 
 export default class AppHeader extends React.Component<AppHeaderProps, AppHeaderState> {

@@ -1,7 +1,5 @@
 import * as React from 'react';
-import EventTableView from '@App/components/molecules/EventTableView';
-import SelectionViewHeader from '@App/components/molecules/SelectionViewHeader';
-import EventGraphView from '@App/components/molecules/EventGraphView';
+import EventTimeline from '@App/components/organisms/EventTimeline';
 
 interface EventContentProps {
 }
@@ -13,9 +11,7 @@ export default class EventContent extends React.Component<EventContentProps, Eve
     public render() {
         return (
             <>
-                <SelectionViewHeader/>
-                <EventGraphView/>
-                <EventTableView/>
+                <EventTimeline/>
             </>
         );
     }
