@@ -1,4 +1,5 @@
 import * as bodyParser from "body-parser";
+import * as cors from 'cors'
 import * as express from "express";
 import IAppDependency from "./config/dependencies";
 import {AppError} from "./frameworks/common/exceptions/AppError";
@@ -9,6 +10,7 @@ const app = express()
 
 const application = (dependencies: IAppDependency) => {
 
+    app.use(cors())
     app.use(bodyParser.urlencoded({extended: true}))
     app.use(bodyParser.json())
 
