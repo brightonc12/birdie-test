@@ -1,5 +1,7 @@
-import { combineReducers } from 'redux';
+import { combineReducers } from 'redux'
+import {events} from './events'
 
-export type RootState = Readonly<{}>;
+const rootReducer = combineReducers({events})
 
-export const rootReducer = combineReducers<RootState>({});
+
+export default rootReducer
