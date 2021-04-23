@@ -1,11 +1,7 @@
 import * as React from 'react';
 import styled, { createGlobalStyle } from 'styled-components';
-import { RootState } from '@App/store/reducers';
-import { connect } from 'react-redux';
-import { Dispatch } from 'redux';
-
-import EventContent from '@App/components/organisms/EventContent';
-import AppHeader from '@App/components/organisms/AppHeader';
+import NabBar from "../components/organisms/NabBar";
+import EventContent from "../components/organisms/EventContent";
 
 interface AppProps {
 
@@ -55,7 +51,7 @@ class App extends React.Component<AppProps, AppState> {
             <>
                 <GlobalStyle/>
                 <Wrapper>
-                    <AppHeader/>
+                    <NabBar/>
                     <EventContent/>
                 </Wrapper>
             </>
@@ -63,10 +59,12 @@ class App extends React.Component<AppProps, AppState> {
     }
 }
 
-const mapStateToProps = (state: RootState, ownProps: object) => {
-};
-
-const mapDispatchToProps = (dispatch: Dispatch<RootState>) => {
-};
-
-export default connect(mapStateToProps, mapDispatchToProps)(App);
+export default App
+//
+// const mapStateToProps = (state: RootState, ownProps: object) => {
+// };
+//
+// const mapDispatchToProps = (dispatch: Dispatch<RootState>) => {
+// };
+//
+// export default connect(mapStateToProps, mapDispatchToProps)(App);

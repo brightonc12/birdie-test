@@ -1,20 +1,20 @@
 import * as React from 'react';
-import Logo from '@App/components/atoms/Logo';
 import styled from 'styled-components';
+import Logo from "../atoms/Logo";
 
-const LogoUrl = require('../../assets/images/logo-birdie.svg');
+import LogoUrl from '../../assets/images/logo-birdie.svg';
 
-interface AppHeaderProps {
+interface NavBarProps {
 }
 
-interface AppHeaderState {
+interface NavBarState {
 }
 
 const HeaderContainer = styled.div`
     margin: 1rem 0;
 `;
 
-export default class AppHeader extends React.Component<AppHeaderProps, AppHeaderState> {
+export default class NabBar extends React.Component<NavBarProps, NavBarState> {
 
     public render() {
         return (

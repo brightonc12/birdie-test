@@ -2,22 +2,24 @@ import * as React from 'react';
 import styled from 'styled-components';
 import TimelineCard from '../molecules/TimelineCard';
 
-export interface Event {
-    id: string;
-    eventType: string;
-    mood: string;
-    timestamp: string;
-    notes: string;
-}
+import {Event} from '../../entities/event'
 
-const data: Event[] = Array.from(Array(50)).map((_, index) => {
+
+
+export const eventData: Event[] = Array.from(Array(50)).map((_, index) => {
+
     return {
         id: `${index + 1}`,
         eventType: 'mood',
-        mood: 'Happy',
+        taskInstanceId: 'shole20js',
+        visitId: 'sk2k23',
+        medicationFailureReason: 'Happy',
+        caregiverId: 'skj329dihj3',
+        careRecipientId: 'sfj2jd',
         timestamp: new Date().toISOString(),
-        notes: 'some notes here',
+        note: 'some notes here',
     };
+
 });
 
 interface EventTimelineProps {
@@ -40,7 +42,7 @@ export default class EventTimeline extends React.Component<EventTimelineProps, E
     public render() {
         return (
             <TimelineWrapper>
-                {data.map((event: Event) => <TimelineCard key={event.id} event={event}/>)}
+                {eventData.map((event: Event) => <TimelineCard key={event.id} event={event}/>)}
             </TimelineWrapper>
         );
     }

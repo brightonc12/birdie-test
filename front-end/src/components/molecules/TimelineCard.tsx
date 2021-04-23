@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 import * as React from 'react';
-import { Event } from '../organisms/EventTimeline';
+import { Event } from '../../entities/event';
 
 interface TimelineCardProps {
     event: Event;
@@ -23,8 +23,8 @@ export default class TimelineCard extends React.Component<TimelineCardProps, Tim
         return (
             <Container>
                 <h4>{this.props.event.eventType}</h4>
-                <h5>{this.props.event.mood}</h5>
-                <p>{this.props.event.notes}</p>
+                <h5>{this.props.event.medicationFailureReason}</h5>
+                <p>{this.props.event.note}</p>
                 <p>{this.props.event.timestamp}</p>
             </Container>
         );
